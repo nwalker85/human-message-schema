@@ -1,0 +1,11 @@
+(* Human Message Schema - v0.0.1 *)
+
+message          = human_message | agent_message ;
+
+human_message    = "(" , content , ")" ;
+agent_message    = content ;
+
+content          = { character | escaped_char | nested_group } ;
+nested_group     = "(" , content , ")" ;
+escaped_char     = "\" , ( "(" | ")" | "\" ) ;
+character        = ? any Unicode character ? ;
